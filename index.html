@@ -1,0 +1,32 @@
+<html lang="en">
+<head>
+    <title>Weather</title>
+    <style>
+        body{
+            background-color:rosybrown;
+        }
+        div{
+            margin-top: 250px;
+            margin-left: 400px;
+        }
+    </style>
+</head>
+<body>
+    <div>
+    <h1>weather</h1>
+    <marquee><h2></h2></marquee>
+    <input type="text">
+    <button onclick="gw()">get weather</button></div>
+    <script>
+        let weather=document.getElementsByTagName("h1")[0];
+        let a=document.getElementsByTagName("h2")[0];
+        async function gw(){
+            let cityname=document.getElementsByTagName("input")[0].value;
+            const url="https://api.openweathermap.org/data/2.5/weather?q="+cityname+"&appid=210da03560fc51939eeac41fc0796dc9";
+            const response=await fetch(url);
+            const data=await response.json();
+            a.textContent="Temparature is "+data.main.temp+".humidity is "+data.main.humidity+".pressure is "+data.main.pressure+".wind speed is "+data.wind.speed;
+        }
+    </script>
+</body>
+</html>
